@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -70,5 +71,19 @@ public class EmployeeController {
 
 
 	}*/
+	@DeleteMapping(value = "/delete/{id}")
+	public ResponseEntity<Employee> deleteEmployee(@PathVariable("id") int id){
+
+		boolean result=	service_i.deleteEmployee(id);
+
+		if(result == true) {
+			return new ResponseEntity<Employee> (HttpStatus.OK);
+		}
+		else {
+			return new ResponseEntity<Employee> (HttpStatus.NOT_FOUND);
+
+		}
+	}
+	
 
 }

@@ -40,7 +40,7 @@ public class EmployeeDao implements EmployeeDaoIF {
 	public List<Employee> getAllEmployee() {
 		Session session = sessionFactory.getCurrentSession();
 		String hql = "from Employee";
-		
+
 		Query<Employee> query = session.createQuery(hql);
 		List<Employee> employeeList = query.list();  
 
@@ -48,9 +48,21 @@ public class EmployeeDao implements EmployeeDaoIF {
 	}
 
 	@Override
+	@SuppressWarnings("rawtypes")
 	public boolean deleteEmployee(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		Session session = sessionFactory.getCurrentSession();
+		
+		Query query = session.createQuery("delete Employee where id = :ID");
+		query.setInteger("ID", id);
+
+		int result = query.executeUpdate();
+
+		if (result > 0) {
+			System.out.println("Expensive products was removed");
+			return true;
+		}
+		else
+			return false;
 	}
 
 	@Override

@@ -37,8 +37,11 @@ public class EmployeeService implements EmployeeServiceIF {
 
 	@Override
 	public boolean deleteEmployee(int id) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean result = dao.deleteEmployee(id);
+		if(result ==true )
+			return true;
+		else 
+			return false;
 	}
 
 	@Override
