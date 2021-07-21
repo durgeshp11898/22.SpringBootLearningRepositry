@@ -58,7 +58,6 @@ public class EmployeeDao implements EmployeeDaoIF {
 		int result = query.executeUpdate();
 
 		if (result > 0) {
-			System.out.println("Expensive products was removed");
 			return true;
 		}
 		else
